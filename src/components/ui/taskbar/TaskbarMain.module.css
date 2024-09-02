@@ -20,12 +20,33 @@
     gap: 2px;
 }
 
+
 .taskbar_item{
     height: 100%;
     padding: 0 8px;
     display: flex;
     align-items: center;
     gap: 5px;
+    font-size: 10px;
+    width: 200px;
+}
+
+.taskbar_text{
+    width: 150px;
+    text-align: left;
+}
+
+.taskbar_item_active{
+    font-family: 'primary-font-bold';
+    background-color: var(--white-color);
+    border-width: 3px;
+    border-style:solid;
+    border-color:#2c2c2c #FFFFFF  #464646 #FFFFFF;
+    border-bottom: 2px solid #000;
+}
+
+.taskbar_item_inactive{
+    font-family: 'primary-font';
 }
 
 .taskbar_icon{

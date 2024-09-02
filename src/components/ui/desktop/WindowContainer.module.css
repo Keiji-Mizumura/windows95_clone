@@ -10,6 +10,11 @@
     position: absolute;
 }
 
+.fullScreen{
+    width: 100%;
+    height: 100vh;
+}
+
 .header{
     color: #fff;
     display: flex;

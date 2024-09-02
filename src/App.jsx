@@ -8,6 +8,7 @@ import Taskbar from './components/ui/taskbar/TaskbarMain'
 const App = () => {
   const [windows, setWindows] = useState([])
   const [spawnCoordinates, setSpawnCoordinates] = useState(50)
+  const [zIndex, seTZIndex] = useState(50)
 
   const addWindow = (jsx) => {
     const currentWindows = windows.slice()
@@ -17,11 +18,14 @@ const App = () => {
       content: "check",
       coordinates: spawnCoordinates,
       visible: true,
-      active: true,
-      content: jsx,
+      active: false,
+      isFullScreen: false,
+      content_jsx: jsx,
+      priority: zIndex
     });
-    setWindows(currentWindows);
-    setSpawnCoordinates(spawnCoordinates+20);
+    setWindows(currentWindows)
+    setSpawnCoordinates(spawnCoordinates + 20)
+    seTZIndex(zIndex + 1)
   }
 
   const toggleWindow = (id) => {
@@ -34,18 +38,42 @@ const App = () => {
             return {...window, visible: true, active: true}
         }
         else{
-          return {...window}
+          return {...window, active: false}
         }
       }
       )
     )
   }
 
-  const setActiveWindow = (id) => {
+  const closeWindow = (id) => {
+    setWindows((win) =>
+      win.filter((window) => {
+        return window.id !== id
+      }
+      )
+    )
+  }
+
+  const fullScreenWindow = (id) => {
+    setWindows((win) => 
+      win.map((window) => {
+        if(window.id === id){
+          return {...window, active: true, coordinates: 0, fullScreen: true}
+        }
+        else{
+          return {...window, active: false}
+        }
+      })
+    )
+  }
+
+  const setActiveWindow = (event, id) => {
+    event.stopPropogation()
     setWindows((win) =>
       win.map((window) => {
         if(window.id === id){
-          return {...window, active: true}
+          seTZIndex(zIndex + 1)
+          return {...window, active: true, priority: zIndex}
         }
         else{
           return {...window, active: false}
@@ -62,8 +90,19 @@ const App = () => {
       <div>
         {
           windows.map(window => 
-            <WindowContainer setActive={() => setActiveWindow(window.id)} key={window.id} toggle={() => toggleWindow(window.id)} visible={window.visible} coordinates={window.coordinates}>{window.title}
-              <>{window.content}</>
+            <WindowContainer 
+              setActive={(e) => setActiveWindow(e, window.id)} 
+              key={window.id} 
+              toggle={() => toggleWindow(window.id)} 
+              close={() => closeWindow(window.id)}
+              fullScreen={() => fullScreenWindow(window.id)}
+              isFullScreen={window.fullScreen}
+              visible={window.visible} 
+              active={window.active} 
+              coordinates={window.coordinates}
+              zIndex={window.priority}
+              >
+              <>{window.content_jsx}</>
             </WindowContainer>
           )
         }
