@@ -1,0 +1,12 @@
+.start_button{
+    height: 100%;
+    border: none;
+}
+
+.start_button:active{
+    transform: scale(0.95);
+}
+
+.start_button_image{
+    height: inherit;
+}

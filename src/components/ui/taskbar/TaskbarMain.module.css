@@ -1,0 +1,33 @@
+.navigation{
+    background-color:  var(--primary-color);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 45px;
+    padding: 2px;
+    display: flex;
+    border-width: 3px;
+    border-style:solid;
+    border-color:#FFFFFF #2c2c2c #464646 #FFFFFF;
+    border-bottom: 2px solid #000;
+    align-items: center;
+    gap: 4px;
+}
+
+.taskbar_nav{
+    height: 100%;
+    display: flex;
+    gap: 2px;
+}
+
+.taskbar_item{
+    height: 100%;
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.taskbar_icon{
+    height: 60%;
+}

@@ -1,0 +1,36 @@
+@font-face {
+  font-family: 'primary-font'; 
+  src: url('./assets/fonts/ms_sans_serif.ttf');
+}
+
+@font-face {
+  font-family: 'primary-font-bold';
+  src: url('./assets/fonts/ms_sans_serif_bold.ttf');
+}
+
+:root{
+  --primary-color: #BFB8BF;
+  --secondary-color: #818181;
+  --blue: #0827f5;
+  font-family: 'primary-font', sans-serif;
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+button{
+  background-color: var(--primary-color);
+  border-width: 3px;
+  border-style:solid;
+  border-color:#FFFFFF #2c2c2c #464646 #FFFFFF;
+  border-bottom: 2px solid #000;
+  cursor: pointer;
+}
+
+button:active{
+  transform: scale(.95);
+  background-color: var(--secondary-color);
+}
